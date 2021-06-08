@@ -1,0 +1,66 @@
+<%-  include('layout/header') %>
+
+<div class="=container">
+    <div class="row my-4">
+        <div class="col-lg-9">
+            <% if(message) { %>
+                <div class="=alert alert-dismissible fade show alert-<%= message.type %>"
+                    role="alert">
+                    <button class="btn-close" type="button" data-bs-dismiss="alert"
+                    aria-label="close"></button>
+                <!-- <button class="btn-close" type="button" data-bs-dismiss="alert"
+                aria-label="Close"></button> -->
+                <strong><%= message.message %></strong>
+            </div>
+            <% } %>
+            <div class="table-responsive ">
+                <% if(books != '') { %>
+
+                    <table class="table table-stripped text-center my-4">
+                        <thead>
+                            <tr class="table-dark">
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Authors name</th>
+                                <th>Genre</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% books.forEach((row, index)=> {%>
+
+                             <tr class="align-middle">
+                                <td><%= index %></td>
+                                <td><img src="<%= row.Image %>" width="50" class="img-thumbnail" /></td>
+                                <td><%= row.title %></td>
+                                <td><%= row.authorname %></td>
+                                <td><%= row.genre %></td>
+                                <td>
+                                   <a href="/edit/<%= row._id %>" class="text-success"><i class="fas fa-edit fa-lg mx-1"></i></a> 
+                                   <a href="/delete/<%= row._id %>" class="text-danger"><i class="fas fa-trash fa-lg mx-1"></i></a> 
+    
+                                </td>
+                            </tr>
+
+
+                            <% }) %>
+                           
+                        </tbody>
+                    </table>
+
+                    <% } else { %>
+                        <h1 class="text-center text-secondary mt-5">No books found in the database!</h1>
+                    <%}%>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<%-  include('layout/footer') %>
+
+    
